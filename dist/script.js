@@ -23,9 +23,7 @@
 
 Имею необходимые профессиональные компетенции и soft skills для успешной работы. В работе проявляю ответственность, пунктуальность и коммуникабельность.
 
-Буду рад обсудить возможность сотрудничества и ответить на любые вопросы. Спасибо за внимание к моей кандидатуре.
-
-Контактные данные прилагаю.`,
+Буду рад обсудить возможность сотрудничества и ответить на любые вопросы. Спасибо за внимание к моей кандидатуре.`,
 
       // Дополнительные шаблоны
       template1: `Добрый день!
@@ -81,6 +79,23 @@
 
   function setRunningState(state) {
     isRunning = state;
+  }
+
+  // Функция для создания и отображения модального окна
+  function showResumeIdModal() {
+    const modalHtml = `
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 10000;">
+        <div style="background: white; padding: 30px; border-radius: 10px; max-width: 500px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+          <h2 style="color: #333; margin-bottom: 20px;">⚠️ Внимание: Заполните ID резюме!</h2>
+          <p style="color: #666; line-height: 1.6;">Перед использованием этого скрипта, пожалуйста, заполните ваш <strong>ID резюме на hh.ru</strong>.</p>
+          <p style="color: #666; line-height: 1.6;">Вы найдете его в файле <code>dist/script.js</code>, строка 11:</p>
+          <pre style="background: #f0f0f0; padding: 10px; border-radius: 5px; overflow-x: auto; text-align: left; margin: 20px 0;"><code>RESUME_ID: "ВАШ_ID_РЕЗЮМЕ",</code></pre>
+          <p style="color: #666; line-height: 1.6;">Замените <code>"ВАШ_ID_РЕЗЮМЕ"</code> на ваш фактический ID. Он выглядит как длинное число в URL вашего резюме на hh.ru.</p>
+          <button onclick="window.location.reload();" style="background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 25px;">Понятно, обновить страницу</button>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
   }
 
   const VACANCY_URL = "https://hh.ru/vacancy";
@@ -225,6 +240,12 @@
 
   // Инициализация
   (async function() {
+    // Проверка на заполнение RESUME_ID
+    if (CONFIG.RESUME_ID === "ВАШ_ID_РЕЗЮМЕ" || !CONFIG.RESUME_ID) {
+      showResumeIdModal();
+      return; // Остановить выполнение скрипта
+    }
+
     // Добавление кнопки отправки откликов
     await (async function() {
       await sleep(CONFIG.DELAY);
