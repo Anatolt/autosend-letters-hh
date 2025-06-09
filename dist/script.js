@@ -19,11 +19,11 @@
       // Шаблон по умолчанию
       default: `Добрый день! 
 
-Меня заинтересовала предложенная Вами вакансия {#vacancyName}. Ознакомившись с перечнем требований к кандидатам, пришел к выводу, что мой опыт работы позволяют мне претендовать на данную должность. 
+Меня заинтересовала предложенная Вами вакансия {#vacancyName}. Ознакомившись с требованиями к кандидатам, считаю, что мой опыт и навыки соответствуют вашим ожиданиям.
 
-Обладаю высоким уровнем фронтенд-разработки, свободно говорю по-английски. В работе ответствен, пунктуален и коммуникабелен.
+Имею необходимые профессиональные компетенции и soft skills для успешной работы. В работе проявляю ответственность, пунктуальность и коммуникабельность.
 
-Буду с нетерпением ждать ответа и возможности обсудить условия работы и взаимные ожидания на собеседовании. Спасибо, что уделили время. 
+Буду рад обсудить возможность сотрудничества и ответить на любые вопросы. Спасибо за внимание к моей кандидатуре.
 
 Контактные данные прилагаю.`,
 
@@ -238,22 +238,6 @@
       navItems[4].insertAdjacentElement("afterend", submitButton);
       submitButton.querySelector('[data-action="submit-responses"]')
         .addEventListener("click", processVacancies);
-    })();
-
-    // Добавление кнопки поддержки проекта
-    await (async function() {
-      const navItems = document.querySelectorAll(SELECTORS.naviItems);
-      const supportButton = navItems[4].cloneNode(true);
-      
-      findHelpElement(supportButton).textContent = "Поддержать проект";
-      supportButton.removeAttribute("href");
-      supportButton.style.cursor = "pointer";
-      
-      supportButton.addEventListener("click", () => {
-        window.open("https://boosty.to/ia-stepanov/donate", "_blank");
-      });
-      
-      navItems[5].insertAdjacentElement("afterend", supportButton);
     })();
   })();
 })();
